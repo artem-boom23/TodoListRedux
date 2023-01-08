@@ -6,6 +6,7 @@ import ColumnLayout from '../ColumnLayout';
 
 export function ToDoColumn() {
   const { todo } = useSelector((state: StoreState) => state);
+  // TODO: Убрать все ненужные пропы отсюда включая actions
   const {
     actions: { completeStatus, remove, add, updateTextShowed },
   } = todoSlice;

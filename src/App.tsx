@@ -48,9 +48,9 @@ function App() {
   };
 
   return (
-    <Container>
+    <Container sx={{mt: '600px'}}>
       <Typography textAlign='center' variant='h3' mt={3} mb={5}>
-        This is a ToDo APP with Redux
+        This is a  APP with Redux
       </Typography>{' '}
       <Grid container spacing={3} justifyContent='center'>
         <DragDropContext onDragEnd={(res) => onDragEnd(res)}>

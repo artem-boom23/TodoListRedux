@@ -15,15 +15,12 @@ import { useDispatch } from 'react-redux';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { StoreDispatch } from '../redux/store';
 import { IColumnLayoutProps } from '../types';
+import {doneSlice} from "../redux/slice/done";
 
 const ColumnLayout: React.FC<IColumnLayoutProps> = ({
   labelText,
-  addHandler,
-  removeHandler,
-  completedHandler,
   selectorState,
   droppableId,
-  updateTextShowed,
 }) => {
   const [isError, setIsError] = useState({
     isShow: false,
@@ -32,6 +29,8 @@ const ColumnLayout: React.FC<IColumnLayoutProps> = ({
 
   const [textDescription, setTextDescription] = useState('');
   const dispatch = useDispatch<StoreDispatch>();
+  const {actions: { completeStatus, remove, add, updateTextShowed }} = doneSlice;
+
 
   const handleOnChange = ({
     target: { value },
@@ -53,7 +52,7 @@ const ColumnLayout: React.FC<IColumnLayoutProps> = ({
 
   const handleOnClick = () => {
     if (!isError.isShow) {
-      dispatch(addHandler(textDescription));
+      dispatch(add(textDescription));
       setTextDescription('');
     }
   };
@@ -194,7 +193,7 @@ const ColumnLayout: React.FC<IColumnLayoutProps> = ({
 
                         <Box display='flex' component='span'>
                           <IconButton
-                            onClick={() => dispatch(removeHandler(id))}
+                            onClick={() => dispatch(remove(id))}
                           >
                             <DeleteIcon
                               sx={{
@@ -209,7 +208,7 @@ const ColumnLayout: React.FC<IColumnLayoutProps> = ({
                             inputProps={{ 'aria-label': 'controlled' }}
                             onChange={() =>
                               dispatch(
-                                completedHandler({
+                                completeStatus({
                                   isFinished: !isFinished,
                                   id,
                                   updatedAt: new Date().toLocaleString(),

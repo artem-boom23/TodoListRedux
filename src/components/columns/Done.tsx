@@ -6,9 +6,6 @@ import ColumnLayout from '../ColumnLayout';
 
 export function DoneColumn() {
   const { done } = useSelector((state: StoreState) => state);
-  const {
-    actions: { completeStatus, remove, add, updateTextShowed },
-  } = doneSlice;
 
   return (
     <>
@@ -16,11 +13,7 @@ export function DoneColumn() {
       <ColumnLayout
         droppableId='done'
         labelText="Type 'done' item"
-        completedHandler={completeStatus}
-        removeHandler={remove}
-        addHandler={add}
         selectorState={done}
-        updateTextShowed={updateTextShowed}
       />
     </>
   );

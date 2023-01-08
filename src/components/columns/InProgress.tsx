@@ -6,11 +6,10 @@ import ColumnLayout from '../ColumnLayout';
 
 export function InProgressColumn() {
   const { inProgress } = useSelector((state: StoreState) => state);
-
+// TODO: Убрать все ненужные пропы отсюда включая actions
   const {
     actions: { completeStatus, remove, add, updateTextShowed },
   } = inProgressSlice;
-
   return (
     <>
       <Typography mb={3}>All inProgress tasks: {inProgress.length}</Typography>
